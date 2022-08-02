@@ -11,11 +11,11 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 1. Install Homebrew using the instructions at [brew.sh](https://brew.sh/)
 1. Install QEMU from your terminal app: 
     ```sh
-    % brew install qemu
+    brew install qemu
     ```
 1. Test that you have QEMU correctly installed by running
     ```
-    % qemu-system-riscv64
+    qemu-system-riscv64
     ```
 
 ### Windows
@@ -29,11 +29,11 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     ```
 1. Save the file and update your shell environment
     ```sh
-    $ source ~/.bashrc
+    source ~/.bashrc
     ```
 1. Test that you have QEMU correctly installed by running
     ```sh
-    $ qemu-system-riscv64
+    qemu-system-riscv64
     ```
 
 ## 2. Set up RISC-V software
@@ -55,7 +55,7 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 ## 3. Boot the Guest OS using QEMU
 1. If you're using my `start.sh` script, run it in your terminal:
     ```sh
-    % ./start.sh
+    ./start.sh
     ```
 1. You should see a lot of OS boot messages go by as the OS takes 1-2 minutes to boot
 1. The default account and password are `debian/debian`. 
@@ -64,20 +64,17 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 ## 4. Install software
 1. Give yourself root access (the `#` prompt means you're root)
     ```sh
-    $ su root
+    su root
     ```
     the default password is `root`
 1. Upgrade the OS to the latest
     ```
-    # apt update && apt upgrade
+    apt update && apt upgrade
     ```
     If the OS upgrade leaves your terminal in a bad state, you may wish to shut down the guest (see below) and run the next step in a new terminal.
-1. Install development tools (one at a time)
+1. Install development tools
     ```
-    # apt install build-essential
-    # apt install gdb
-    # apt install git
-    # apt install python3-pip    
+    apt install build-essential gdb git python3-pip
     ```
 
 ## 5. Choose an editor in the guest OS
@@ -85,24 +82,24 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 ### vim
 1. If you're a `vim` user, you can install it
     ```
-    # apt install vim
+    apt install vim
     ```
 1. There are `vim` syntax highlighters for RISC-V assembly language. [kylelaker/riscv.vim](https://github.com/kylelaker/riscv.vim) worked for me.
 
 ### micro
 1. If you prefer to use `micro` you can `scp` it from your host OS onto the guest
     ```
-    % cd artifacts
-    % scp -P 2222 micro debian@localhost:~
+    cd artifacts
+    scp -P 2222 micro debian@localhost:~
     ```
 1. Once back on the guest OS, you can move the `micro` executable to somewhere on your `PATH`
     ```
-    $ mv micro /usr/local/bin/
+    mv micro /usr/local/bin/
     ```
 1. I wrote a syntax highlighter for RISC-V assembly
     ```
-    $ cd ~/.config
-    $ git clone https://github.com/phpeterson-usf/micro
+    cd ~/.config
+    git clone https://github.com/phpeterson-usf/micro
     ```
 
 ## 6. *Optional but recommended*: SSH access to the Guest OS
@@ -122,11 +119,11 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 1. When your host OS sleeps, the guest OS generates some gross kernel error messages (which may or may not indicate a real problem)
 1. To shut down the guest OS
     ```
-    $ su root
-    # systemctl poweroff
+    su root
+    systemctl poweroff
     ```
 1. To reboot the guest OS
     ```
-    $ su root
-    # systemctl reboot
+    su root
+    systemctl reboot
     ```
