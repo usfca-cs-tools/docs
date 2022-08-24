@@ -1,1 +1,2 @@
-# docs
+# USFCA Computer Science Tools
+

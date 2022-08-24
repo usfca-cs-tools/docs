@@ -57,6 +57,10 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     ```sh
     ./start.sh
     ```
+1. If you get a permissions error running `start.sh` then change it's file mode to executable and try again
+    ```sh
+    chmod 0644 start.sh
+    ```
 1. You should see a lot of OS boot messages go by as the OS takes 1-2 minutes to boot
 1. The default account and password are `debian/debian`. 
 1. You should change the default password using `passwd`
