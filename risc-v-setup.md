@@ -53,13 +53,14 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     ```
 
 ## 3. Boot the Guest OS using QEMU
+
+1. You need to change the permissions of `start.sh` to allow it to be executed:
+    ```sh
+    chmod 0755 start.sh
+    ```
 1. If you're using my `start.sh` script, run it in your terminal:
     ```sh
     ./start.sh
-    ```
-1. If you get a permissions error running `start.sh` then change it's file mode to executable and try again
-    ```sh
-    chmod 0644 start.sh
     ```
 1. You should see a lot of OS boot messages go by as the OS takes 1-2 minutes to boot
 1. The default account and password are `debian/debian`. 
