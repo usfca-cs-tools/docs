@@ -22,22 +22,12 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 1. Install Ubuntu for Windows Subsystem for Linux (WSL) using the instructions at [microsoft.com](https://docs.microsoft.com/en-us/windows/wsl/install)
     1. Don't change the default distribution - Ubuntu is fine
     1. *Optional but recommended:* Review the [Best Practices](https://docs.microsoft.com/en-us/windows/wsl/setup/environment) suggested by Microsoft
-1. Install QEMU for 64-bit Windows using the instructions at [qemu.org](https://www.qemu.org/download/#windows)
-1. Add to your `PATH` in `~/.bashrc`
+1. Install QEMU for Ubuntu 
     ```sh
-    export PATH="/mnt/c/Program Files/qemu":$PATH
-    ```
-1. Save the file and update your shell environment
-    ```sh
-    source ~/.bashrc
-    ```
-1. Test that you have QEMU correctly installed by running
-    ```sh
-    qemu-system-riscv64
+    sudo apt install qemu-misc qemu-system qemu-system-misc
     ```
 
 ## 2. Set up RISC-V software
-1. Exit `qemu-system-riscv64` if it's running
 1. `mkdir debian-riscv64` a directory to hold the Debian/riscv64 software, and `cd` into it. 
 1. Download the Debian/riscv [OS image](https://people.debian.org/~gio/dqib/) and `unzip` it
 1. `cd artifacts`
@@ -45,21 +35,20 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 1. Download `uboot.elf` and `fw_jump.elf` into the `artifacts/` folder
 1. *Optional but recommended*
     1. `start.sh` is a shell script which launches QEMU with the Debian OS image
-    1. [`micro`](https://micro-editor.github.io/) is a nice terminal-mode editor with modern keyboard and mouse interactions. I recompiled it for RISC-V since I prefer it to `vim`
-    1. `asm.lang` is a hack for `gdb` to do syntax highlighting for RISC-V assembly code in the debugger
+    1. [`micro`](https://micro-editor.github.io/) is a nice terminal-mode editor with modern keyboard and mouse interactions. 
+    I recompiled it for RISC-V since I prefer it to `vim`. 
+    1. `asm.lang` is a hack for `gdb` to do syntax highlighting for RISC-V assembly code in the debugger. 
 1. Make an overlay image for the OS, just in case you mess it up
     ```sh
     qemu-img create -o backing_file=image.qcow2,backing_fmt=qcow2 -f qcow2 overlay.qcow2
     ```
 
+
 ## 3. Boot the Guest OS using QEMU
-1. If you're using my `start.sh` script, run it in your terminal:
+1. If you're using my `start.sh` script, make sure it's executable, and thenrun it in your terminal:
     ```sh
+    chmod 0755 start.sh
     ./start.sh
-    ```
-1. If you get a permissions error running `start.sh` then change it's file mode to executable and try again
-    ```sh
-    chmod 0644 start.sh
     ```
 1. You should see a lot of OS boot messages go by as the OS takes 1-2 minutes to boot
 1. The default account and password are `debian/debian`. 
@@ -71,6 +60,11 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     su root
     ```
     the default password is `root`
+1. Check that the date is correct using the `date` command. The results will be in UTC, 7 hours ahead of PST.
+    1. If it's wrong (perhaps July 13), you can set it to the correct time (the date below is an example to show the format)
+        ```sh
+        date --set="25 AUG 2022 19:15:00"
+        ```
 1. Upgrade the OS to the latest (as root)
     ```sh
     apt update && apt upgrade
@@ -81,7 +75,7 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     apt install build-essential gdb git python3-pip
     ```
 
-## 5. Choose an editor in the guest OS
+## 5. Set up tools in the guest
 
 ### vim
 1. If you're a `vim` user, you can install it (as root)
@@ -96,14 +90,24 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     cd artifacts
     scp -P 2222 micro debian@localhost:~
     ```
-1. Once back on the guest OS, you can move the `micro` executable to somewhere on your `PATH` (as root)
+1. Once back on the guest OS, you should ensure that `micro` is executable and move it to `/usr/local/bin` (must be `root`)
     ```sh
+    chmod 0755 micro
     mv micro /usr/local/bin/
     ```
-1. I wrote a syntax highlighter for RISC-V assembly
+1. I wrote a syntax highlighter for RISC-V assembly language
     ```sh
-    cd ~/.config
+    cd ~
+    mkdir .config
+    cd .config
     git clone https://github.com/phpeterson-usf/micro
+    ```
+### gdb
+1. To get syntax highlighting in `gdb` move `asm.lang` into `source-highlight`
+    ```sh
+    cd /usr/share/source-highlight/
+    mv asm.lang asm.lang.orig
+    mv ~/asm.lang .
     ```
 
 ## 6. *Optional but recommended*: ssh access to the guest OS
