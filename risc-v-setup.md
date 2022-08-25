@@ -114,13 +114,16 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 1. Although you can log in directly from the guest OS you booted, you may find it convenient to `ssh` to it. Advantages:
     1. You can have multiple windows open to look at source code and the debugger at the same time
     1. You can use SSH forwarding to use `git` on the guest without copying your `ssh` keys to the guest (which is bad security practice)
-    1. To set up `ssh` forwarding, edit `~/.ssh/config` to add these lines:
-        ```sh
-        Host localhost
-          ForwardAgent yes
-          AddKeysToAgent yes
-        ```
-1. If you're using my `start.sh` script, you can `ssh -p 2222 debian@localhost`
+1. To set up `ssh`, edit `~/.ssh/config` to add these lines:
+    ```sh
+    Host localhost
+        ForwardAgent yes
+        AddKeysToAgent yes
+        IdentityFile ~/.ssh/ed25519_key
+        User debian
+        Port 2222
+    ```
+1. Now you can `ssh localhost`, assuming the guest has already been started
 
 ## 7. Stopping the guest OS
 1. If you don't stop the guest OS, it will continue to use about 1 GB of RAM. 
