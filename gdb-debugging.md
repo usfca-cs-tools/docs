@@ -96,6 +96,7 @@
     (gdb) b main
     (gdb) p x
     ```
+1. To step/next quickly through your program, you can use the Return/Enter key, which repeats the previous command command.
 
 ## gdb and printf()
 
