@@ -73,7 +73,7 @@
 
 ## Spacing
 
-1. You should have braces around operators, after commas, and before open braces. Acceptable:
+1. You should have spaces around operators, after commas, and before open braces. Acceptable:
     ```c
     for (int i = 0; i < argc; i++) {
         x += 4;
@@ -106,3 +106,18 @@
 1. Each function should do only what it says, and use only the parameters it gets passed.
 1. Same idea with files. If you have a file called `chess_move.c` and it starts drawing the board, you need a new file. 
 1. This is called [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)
+
+## Dead Code
+
+1. You should not turn in assignments with code commented out
+    ```c
+    int main(int argc, char **argv) {
+        /* for (int i = 0; i < argc; i++) { */
+    ```
+    or code which is unreachable in your flow of logic
+    ```c
+    int main(int argc, char **argc) {
+        return 0;
+        printf("got here!\n");
+    ```
+1. This is called "dead code" and distracts the reader from what you're really trying to do.
