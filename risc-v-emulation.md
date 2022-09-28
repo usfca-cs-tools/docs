@@ -18,9 +18,15 @@
 
 ## Opcodes
 
-1. There are seven core opcodes (and one extension for `mul`). In the RISC-V spec, see Chapter 24 RV3264G Instruction Set Listings
-    1. Opcodes are in bits 0-6 of every RISC-V instruction
-    1. Instructions which operate on two registers are called R-type instructions and have opcode [DO WE WANT TO LIST THEM ALL HERE?]
+1. There are seven core opcodes (and one extension for `mul`). In the RISC-V spec, see Chapter 24 RV3264G Instruction Set Listings. Opcodes are in bits 0-6 of every RISC-V instruction
+    1. R-type instructions (opcode `0b0110011`) are instructions which have two source registers
+    1. I-type instructions (opcode `0b0010011`) are instructions which have an 12-bit immediate encoded in the instruction
+        1. `ld` instructions have the same format as I-type, but have opcode `0b0000011`
+        1. `jalr` (aka `ret`) instructions have the same format as I-type, but have opcode `0b1100111`
+    1. S-type instructions (opcode `0b0100011`) are `st` instructions (no `rd`)
+    1. SB-type instructions (opcode `0b1100011`) are conditional branch instructions (see also pseudo-instructions)
+    1. UJ-type instructions (opcode `0b1101111`) are jump instructions `j` and `jal` (aka `call`)
+
 
 ## Func3 and Func7
 
