@@ -18,7 +18,7 @@
 
 ## Opcodes
 
-1. There are seven core opcodes (and one extension for `mul`). In the RISC-V spec, see Chapter 24 RV3264G Instruction Set Listings. Opcodes are in bits 0-6 of every RISC-V instruction
+1. There are six core opcodes in the RISC-V architecture. See Chapter 24 RV3264G Instruction Set Listings. Opcodes are in bits 0-6 of every RISC-V instruction
     1. R-type instructions (opcode `0b0110011`) are instructions which have two source registers
     1. I-type instructions (opcode `0b0010011`) are instructions which have an 12-bit immediate encoded in the instruction
         1. `ld` instructions have the same format as I-type, but have opcode `0b0000011`
@@ -26,6 +26,7 @@
     1. S-type instructions (opcode `0b0100011`) are `st` instructions (no `rd`)
     1. SB-type instructions (opcode `0b1100011`) are conditional branch instructions (see also pseudo-instructions)
     1. UJ-type instructions (opcode `0b1101111`) are jump instructions `j` and `jal` (aka `call`)
+    1. U-format instructions
 
 
 ## Func3 and Func7
@@ -36,7 +37,12 @@
 
 ## Pseudo-instructions
 
-1. `li`, `call`, `ret`
+1. Some instructions are provided for programmer convenience, but are translated into machine code using  forms
+    - `li` (load immediate to register) is translated to machine code as  `addi rd, x0, imm`. Recall `x0` (or `zero`) always has the value zero
+    - `mv` is translated as `addi rd, rs1, 0`
+    - `call` is translated as `jal imm` (jump and link) 
+    - `ret` is translated as `jalr x0, x1, 0` (jump and link register)
+    - `ble` and `bgt` are translated as `blt` and `bge` with the operands reversed
 
 ## Immediate Values
 1. Ranges and assembly using SHIFT and OR
