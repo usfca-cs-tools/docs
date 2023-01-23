@@ -25,7 +25,7 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
 
 ## 2. Install Debian/riscv64 as a Guest OS
 
-1. Go to this Google drive [folder]() and download debian-riscv64.zip to your laptop
+1. Go to this Google drive [folder](https://drive.google.com/drive/folders/1MpRQ2UFY9UpusGkEKQpkjkzhtFXgBCbT?usp=sharing) and download debian-riscv64.zip to your laptop
 1. `unzip debian-riscv64.zip` to create the directory `debian-riscv64/` and `cd` into it
 1. Make an overlay image for the OS, just in case you mess it up
     ```sh
