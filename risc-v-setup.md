@@ -47,9 +47,9 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     su root
     ```
     the default password is `root`. The `#` prompt means you're root
-1. As root, upgrade the OS to the latest. This will take some time.
+1. As root, update the download locations for the following `apt install`. This may take some time.
     ```sh
-    apt update && apt upgrade
+    apt update
     ```
 1. As root, install development tools. This will take some time.
     ```sh
@@ -59,7 +59,13 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     ```sh
     ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
     ```
-
+1. Shut down the system, and bring it up again
+    ```sh
+    systemctl poweroff
+    ```
+    ```sh
+    ./start.sh
+    ```
 ## 4. Configure `ssh` access to the Guest OS
 
 1. Although it's possible to log in directly from the guest OS you booted, we recommend you `ssh` to it in a new terminal window.
