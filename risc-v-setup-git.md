@@ -55,7 +55,7 @@ Footnote: I borrowed code and instructions from all over, but [Colin Atkinson's 
     ```sh
     apt install build-essential gdb python3-pip
     ```
-1. As root, build git from source (required due to dependency problem with upstream git-man)
+1. As root, build git from source (required due to dependency problem with upstream git-man) [footnote](https://linuxopsys.com/topics/install-git-on-debian)
     1. Install git's dependencies
         ```
         apt install make libssl-dev libghc-zlib-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip wget
