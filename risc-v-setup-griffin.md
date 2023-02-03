@@ -4,7 +4,7 @@
 
 1. These are instructions for connecting to the debian/riscv64 environment running on griffin. Griffin is a host inside the CS Labs network
 1. I originally intended to have everyone run QEMU and the emulated OS on your own laptops, but the Debian distribution seems to have package version problems that I can't resolve.
-1. Therefore, as a plan B, I've copied a working QEMU+debian/riscv64 build onto that machine that cs315-s23 students can use.
+1. Therefore, as a plan B, I've copied a working QEMU+debian/riscv64 build onto that machine that a few cs315-s23 students can use.
 
 ## 1. Configure `ssh` access to stargate
 
@@ -75,16 +75,27 @@
     ```
     source ~/.bashrc
     ```
+1. Install autograder python modules
+    ```
+    cd ~/autograder
+    pip3 install -r requirements.txt
+    ```
 1. To install the test cases for the grading script
     ```sh
     cd ~
     git clone git@github.com:/cs315-s23/tests
+    ```
+1. Configure git
+    ```
+    git config --global user.name "Your Name"
+    git config --global user.email your_usf_id@dons.usfca.edu
     ```
 
 ## 4. Test that git and autograder work
 
 1. You should be able to clone your lab repo
     ```
+    cd ~
     git clone git@github.com:/cs315-s23/lab01-yourgithub
     ```
 1. You should be able to grade your lab repo
