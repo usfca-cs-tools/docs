@@ -2,7 +2,7 @@
 
 ## Background
 
-1. These are instructions for connecting to the debian/riscv64 environment running on griffin. Griffin is a host inside the CS Labs network
+1. These are instructions for connecting to the debian/riscv64 environment running on euryale. euryale is a host inside the CS Labs network
 1. I originally intended to have everyone run QEMU and the emulated OS on your own laptops, but the Debian distribution seems to have package version problems that I can't resolve.
 1. Therefore, as a plan B, I've copied a working QEMU+debian/riscv64 build onto that machine that a few cs315-s23 students can use.
 
@@ -14,13 +14,13 @@
     ssh stargate
     ```
 
-## 2. Configure `ssh` access to griffin
+## 2. Configure `ssh` access to euryale
 
-1. From stargate, connect to griffin
+1. From stargate, connect to euryale
     ```
-    ssh griffin
+    ssh euryale
     ```
-1. On griffin, edit `~/.ssh/config` to add these lines:
+1. On euryale, edit `~/.ssh/config` to add these lines:
     ```
     Host *
         ForwardAgent yes
@@ -31,11 +31,11 @@
         User your_usf_username
         Port 2222
     ```
-1. On griffin, copy your public key from your laptop to the `authorized_keys` file on the debian/riscv64 OS
+1. On euryale, copy your public key from your laptop to the `authorized_keys` file on the debian/riscv64 OS
     ```sh
     ssh-copy-id riscv
     ```
-1. On griffin 
+1. On euryale 
     ```sh
     ssh riscv
     ``` 
@@ -69,7 +69,7 @@
     ```
     Add the line
     ```
-    export PATH=~/autograder/$PATH
+    export PATH=~/autograder:$PATH
     ```
     Save and quit. Now reload the shell environment
     ```
