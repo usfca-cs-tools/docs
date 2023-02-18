@@ -99,11 +99,13 @@
     int bestMove = findBestMove(&board);
     ```
 
-## Function Size
+## Using Functions and Files
 
+1. The `main()` function should be used only for parsing command-line parameters, and calling other functions to do the bulk of the work.
+1. You should not have a long `main()` function.
 1. Think of each function as being a paragraph, with a beginning, middle, and end.
 1. If your function appears to have multiple beginnings, then you should break it up into multiple functions.
-1. Each function should do only what it says, and use only the parameters it gets passed.
+1. Each function should do only what it says, and use only the parameters it gets passed (no side effects).
 1. Same idea with files. If you have a file called `chess_move.c` and it starts drawing the board, you need a new file. 
 1. This is called [Separation of Concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)
 
