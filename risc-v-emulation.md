@@ -39,7 +39,7 @@
 
 1. Some instructions are provided for programmer convenience, but are translated into machine code using  forms
     - `li` (load immediate to register) is translated to machine code as  `addi rd, x0, imm`. Recall `x0` (or `zero`) always has the value zero
-    - `mv` is translated as `addi rd, rs1, 0`
+    - `mv rd rs1` is translated as `add rd, x0, rs1`
     - `call` is translated as `jal imm` (jump and link) 
     - `ret` is translated as `jalr x0, x1, 0` (jump and link register)
     - `ble` and `bgt` are translated as `blt` and `bge` with the operands reversed
