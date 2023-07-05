@@ -6,7 +6,7 @@
 
 ## Braces and Spaces
 
-1. Go uses tab characters for indentation and spaces for alignment
+1. Go recommends tab characters for indentation and spaces for alignment. `go fmt` will replace leading spaces with tabs.
 1. Go puts opening braces on the end of a line of code like this
     ```go
     if x == y {
@@ -19,7 +19,7 @@
     {
         doSomething()
     }
-1. Braces are always required around a block, unlike C which supports single-line blocks
+1. Braces are required around a block, unlike C which supports single-line blocks
 
 ## Optional Syntax
 
