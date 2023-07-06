@@ -13,3 +13,28 @@
         Connection to github.com closed.
         ```
     1. Windows: ssh agent
+
+1. Terminal setup (<a onclick="toggle_display('terminal_mac')">Mac</a>, <a onclick="toggle_display('terminal_win')">Windows</a>)
+
+    <div id="terminal_mac" class="div-toggle" style="display:none" markdown=1>
+    For Mac:
+    - Apple's Terminal app should work ok
+    - I prefer [iTerm2](https://iterm2.com/) because it works well with my preferred terminal-mode editor, [micro](https://iterm2.com/)
+    </div>
+
+    <div id="terminal_win" class="div-toggle" style="display:none" markdown=1>
+    For Windows:
+    - I recommend using [Git For Windows](https://gitforwindows.org/). Git Bash offers a Unix-like shell environment.
+    - If you already have [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install), that's also fine
+    </div>
+
+<script>
+    function toggle_display(id_name) {
+        var e = document.getElementById(id_name);
+        if (e.style.display === "none") {
+            e.style.display = "block";
+        } else {
+            e.style.display = "none";
+        }
+    }
+</script>
