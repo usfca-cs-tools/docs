@@ -101,3 +101,7 @@ This document is a follow-up to my [git basics](git-basics.md) document, intende
     $ git checkout main
     $ git merge new_feature
     ```
+1. Push the merged code to the remote
+    ```
+    $ git push
+    ```
