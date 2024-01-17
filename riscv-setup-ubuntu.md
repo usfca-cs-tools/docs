@@ -104,7 +104,11 @@ In your terminal window
     Connection to github.com closed.
     ```
     If github gives you a publickey error, that probably means you don't have SSH set up correctly to github.
-
+1. Tell git who you are
+    ```
+    git config --global user.email "you@example.com"
+    git config --global user.name "Your Name"
+    ```
 ## 4. Set up an editor
 
 1. When learning a new language, such as RISC-V assembly language, syntax highlighting can be very helpful. Here are two options:
