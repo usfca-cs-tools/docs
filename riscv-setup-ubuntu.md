@@ -119,3 +119,11 @@ In your terminal window
             cd ~/.config
             git clone git@github.com:/phpeterson-usf/micro
             ```
+
+## 5. Set the time zone
+
+1. In order for your code pushes to github to have the correct time stamp
+you should set the time zone:
+    ```sh
+    sudo timedatectl set-timezone America/Los_Angeles
+    ```
